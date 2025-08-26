@@ -1,6 +1,6 @@
-# McDonald's® Interface Clone
+# Burger King® Interface Clone
 
-A modern Angular application that replicates the McDonald's® ordering interface. Built with Angular 17 and featuring a responsive design with cart management functionality.
+A modern Angular application that replicates the Burger King® ordering interface. Built with Angular 17 and featuring a responsive design with cart management functionality.
 
 ## Features
 
@@ -42,9 +42,9 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Acknowledgments
 
-- Design inspired by McDonald's® official website
+- Design inspired by Burger King® official website
 - Icons provided by Font Awesome
 - Angular team for the amazing framework
 
 ---
-**Note:** This is a clone project created for educational purposes only. McDonald's® is a registered trademark of McDonald's Corporation.
+**Note:** This is a clone project created for educational purposes only. Burger Kings® is a registered trademark of Burger King Corporation.
