@@ -1,0 +1,39 @@
+<div class="products">
+    <div class="product" *ngFor="let product of products" (click)="openModal(product)">
+        <div class="product-image-container">
+            <img [src]="product.image" [alt]="product.title" class="product-image">
+        </div>
+        <div class="product-info">
+            <h3>{{ product.title }}</h3>
+            <p>{{ product.description }}</p>
+            <span>{{ formatPrice(product.price) }}</span>
+            <span class="ordered-info">10k+ ordered</span> <!-- Add number of orders info -->
+            <button class="add-to-cart-btn" (click)="addToCart()">+ Add</button> <!-- Add button -->
+        </div>
+    </div>
+</div>
+
+<!-- Modal for product details -->
+<div class="modal" *ngIf="isVisible">
+    <div class="modal-content">
+        <button class="close-btn" (click)="close()">
+            <i class="fas fa-times"></i>
+        </button>
+        <img [src]="currentProduct?.image" [alt]="currentProduct?.title" class="modal-image">
+        <h2>{{ currentProduct?.title }}</h2>
+        <p>{{ currentProduct?.description }}</p>
+        <div>
+            <span *ngIf="currentProduct?.calories"><i class="fas fa-fire"></i> {{ currentProduct?.calories }} cal</span>
+            <span *ngIf="currentProduct?.prepTime"><i class="fas fa-clock"></i> {{ currentProduct?.prepTime }} min</span>
+        </div>
+        <div class="price">{{ formatPrice(currentProduct?.price || 0) }}</div>
+        <div class="quantity-controls">
+            <button class="quantity-btn" (click)="decreaseQuantity()">−</button>
+            <span class="quantity">{{ quantity }}</span>
+            <button class="quantity-btn" (click)="increaseQuantity()">+</button>
+        </div>
+        <button class="add-to-cart-btn" (click)="addToCart()">
+            <i class="fas fa-cart-plus"></i> Add to Cart 
+        </button>
+    </div>
+</div>
