@@ -47,7 +47,7 @@ export class GlovoComponent {
       id: 'mcchicken',
       title: "McChicken™ Menu", 
       description: "Crispy chicken sandwich with fries and drink", 
-      image: "https://images.unsplash.com/photo-1606755962773-d324e2dabd39?w=300&h=200&fit=crop",
+      image: "https://th.bing.com/th/id/R.49beeaaf319ceeb223895d59551111f6?rik=TcIfHkUR0IFBeg&pid=ImgRaw&r=0",
       price: 64,
       category: 'chicken',
       calories: 480,
@@ -58,7 +58,7 @@ export class GlovoComponent {
       id: 'mcnuggets',
       title: "20 Chicken McNuggets™", 
       description: "Crispy golden chicken nuggets with sauce", 
-      image: "https://images.unsplash.com/photo-1562967916-eb82221dfb38?w=300&h=200&fit=crop",
+      image: "https://tse1.mm.bing.net/th/id/OIP.1V8DXDfYTsVZNLptRpvtzgHaF5?rs=1&pid=ImgDetMain&o=7&rm=3",
       price: 58,
       category: 'chicken',
       calories: 830,
@@ -115,3 +115,4 @@ export class GlovoComponent {
     return count.toString();
   }
 }
+
