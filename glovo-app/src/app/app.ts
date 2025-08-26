@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
   template: `
     <div class="app-container">
       <header class="app-header">
-        <div class="brand-name">McDonald's®</div>
+        <div class="brand-name">Burger King®</div>
         <div class="cart-badge" *ngIf="(totalItems$ | async)! > 0">
           <i class="fas fa-shopping-cart"></i>
           <span class="badge">{{ totalItems$ | async }}</span>
