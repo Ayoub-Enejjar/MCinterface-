@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { GlovoComponent } from './glovo/glovo';
 import { CommonModule } from '@angular/common';
+import { CartService } from './services/cart.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +12,10 @@ import { CommonModule } from '@angular/common';
     <div class="app-container">
       <header class="app-header">
         <div class="brand-name">McDonald's®</div>
+        <div class="cart-badge" *ngIf="(totalItems$ | async)! > 0">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="badge">{{ totalItems$ | async }}</span>
+        </div>
       </header>
       <app-glovo></app-glovo>
     </div>
@@ -25,12 +31,17 @@ import { CommonModule } from '@angular/common';
     }
     .app-header {
       background: #fff;
-      padding: 24px 0 8px 0;
-      text-align: center;
+      padding: 24px 20px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       font-size: 24px;
       font-weight: bold;
       color: #222;
       box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
     .brand-name {
       font-family: inherit;
@@ -38,11 +49,32 @@ import { CommonModule } from '@angular/common';
       font-weight: bold;
       color: #222;
     }
+    .cart-badge {
+      position: relative;
+      color: #ffcc02;
+      font-size: 20px;
+    }
+    .badge {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: #ff4757;
+      color: white;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 600;
+    }
   `]
 })
-export class AppComponent {}
-// Glovoo-app/glovo-app/src/app/models/menu-item.ts
-export class MenuItem {
-  // ...
-  hovered: boolean = false;
+export class AppComponent {
+  totalItems$: Observable<number>;
+
+  constructor(private cartService: CartService) {
+    this.totalItems$ = this.cartService.totalItems$;
+  }
 }

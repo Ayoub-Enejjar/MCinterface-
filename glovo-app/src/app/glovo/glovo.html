@@ -6,34 +6,61 @@
         <div class="product-info">
             <h3>{{ product.title }}</h3>
             <p>{{ product.description }}</p>
-            <span>{{ formatPrice(product.price) }}</span>
-            <span class="ordered-info">10k+ ordered</span> <!-- Add number of orders info -->
-            <button class="add-to-cart-btn" (click)="addToCart()">+ Add</button> <!-- Add button -->
+            <div class="product-footer">
+                <div class="price-section">
+                    <span class="price">{{ formatPrice(product.price) }}</span>
+                    <span class="ordered-info">{{ formatOrders(product.ordersCount) }}+ ordered</span>
+                </div>
+                <button class="add-to-cart-btn" (click)="quickAdd(product); $event.stopPropagation()">
+                    <i class="fas fa-plus"></i>
+                </button>
+            </div>
         </div>
     </div>
 </div>
 
-<!-- Modal for product details -->
-<div class="modal" *ngIf="isVisible">
-    <div class="modal-content">
+<!-- Enhanced Modal for product details -->
+<div class="modal-overlay" *ngIf="isVisible" (click)="close()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
         <button class="close-btn" (click)="close()">
             <i class="fas fa-times"></i>
         </button>
-        <img [src]="currentProduct?.image" [alt]="currentProduct?.title" class="modal-image">
-        <h2>{{ currentProduct?.title }}</h2>
-        <p>{{ currentProduct?.description }}</p>
-        <div>
-            <span *ngIf="currentProduct?.calories"><i class="fas fa-fire"></i> {{ currentProduct?.calories }} cal</span>
-            <span *ngIf="currentProduct?.prepTime"><i class="fas fa-clock"></i> {{ currentProduct?.prepTime }} min</span>
+        
+        <div class="modal-body" *ngIf="currentProduct">
+            <div class="modal-image-container">
+                <img [src]="currentProduct.image" [alt]="currentProduct.title" class="modal-image">
+            </div>
+            
+            <div class="modal-info">
+                <h2>{{ currentProduct.title }}</h2>
+                <p class="modal-description">{{ currentProduct.description }}</p>
+                
+                <div class="product-details" *ngIf="currentProduct.calories || currentProduct.prepTime">
+                    <span *ngIf="currentProduct.calories" class="detail-item">
+                        <i class="fas fa-fire"></i> {{ currentProduct.calories }} cal
+                    </span>
+                    <span *ngIf="currentProduct.prepTime" class="detail-item">
+                        <i class="fas fa-clock"></i> {{ currentProduct.prepTime }} min
+                    </span>
+                </div>
+            </div>
+
+            <div class="quantity-section">
+                <div class="quantity-controls">
+                    <button class="quantity-btn" (click)="decreaseQuantity()" [disabled]="quantity <= 1">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <span class="quantity">{{ quantity }}</span>
+                    <button class="quantity-btn" (click)="increaseQuantity()">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+
+            <button class="modal-add-btn" (click)="addToCart()">
+                <i class="fas fa-cart-plus"></i>
+                Add to Cart • {{ formatPrice(currentProduct.price * quantity) }}
+            </button>
         </div>
-        <div class="price">{{ formatPrice(currentProduct?.price || 0) }}</div>
-        <div class="quantity-controls">
-            <button class="quantity-btn" (click)="decreaseQuantity()">−</button>
-            <span class="quantity">{{ quantity }}</span>
-            <button class="quantity-btn" (click)="increaseQuantity()">+</button>
-        </div>
-        <button class="add-to-cart-btn" (click)="addToCart()">
-            <i class="fas fa-cart-plus"></i> Add to Cart 
-        </button>
     </div>
 </div>
