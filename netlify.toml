@@ -1,0 +1,4 @@
+[build]
+  base = "glovo-app"
+  command = "npx ng build --configuration production"
+  publish = "dist/glovo-app"
