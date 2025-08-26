@@ -2,3 +2,7 @@
   base = "glovo-app"
   command = "npx ng build --configuration production"
   publish = "dist/glovo-app"
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
